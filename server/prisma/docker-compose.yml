@@ -1,0 +1,23 @@
+version: '3'
+services:
+  prisma:
+    image: prismagraphql/birotobusbenden
+    restart: always
+    ports:
+    - "4466:4466"
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        # uncomment the next line and provide the env var PRISMA_MANAGEMENT_API_SECRET=my-secret to activate cluster security
+        # managementApiSecret: my-secret
+        databases:
+          default:
+            connector: postgres
+            host: ec2-54-195-252-243.eu-west-1.compute.amazonaws.com
+            port: '5432'
+            database: detbc37rg8eg4t
+            ssl: true
+            schema: schema.graphql
+            user: xdclwlwfoniihz
+            password: 2d1db2f6120319ee1d4a2f6dc8954b679348a8a6c760e3c59a13141305c1a05f
+            migrations: true

@@ -1,0 +1,24 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "apollo-server-express": "^2.3.1",
+    "core-js": "^3.0.0-beta.11",
+    "env-cmd": "^8.0.2",
+    "graphql-cli": "^2.16.4",
+    "graphql-yoga": "^1.14.10",
+    "jsonwebtoken": "^8.4.0",
+    "nodemon": "^1.18.10",
+    "prisma-binding": "^2.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start:dev": "env-cmd ./config/dev.env nodemon src/app.js",
+    "get-schema": "graphql get-schema -p prisma --dotenv config/dev.env"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

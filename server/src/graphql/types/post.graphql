@@ -1,0 +1,20 @@
+# import PostOrderByInput from '../../generated/prisma.graphql'
+
+type Query{
+    post(id: ID!): Post!
+    posts(query: String, status: Boolean, first: Int, skip: Int, after: String, orderBy: PostOrderByInput): [Post!]!
+}
+
+type Post {
+  id: ID! 
+  user: User!
+  type: Type!
+  genderPreffer: Boolean
+  isActive: Boolean! @default(value: true)
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Mutation {
+    createPost(data: PostCreateInput!): Post
+}

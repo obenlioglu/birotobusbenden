@@ -1,0 +1,29 @@
+type User {
+  id: ID! @unique
+  twitterUsername: String!
+  isActive: Boolean! @default(value: true)
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  posts: [Post!]!
+}
+
+type Post {
+  id: ID! @unique
+  user: User!
+  type: Type!
+  genderPreffer: Boolean
+  isActive: Boolean! @default(value: true)
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Type {
+  id: ID! @unique
+  description: String!
+  isActive: Boolean! @default(value: true)
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  post: [Post!]!
+}
+
+
