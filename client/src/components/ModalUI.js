@@ -14,8 +14,7 @@ const { Option } = Select;
 
 export class ModalUI extends Component {
     state = {
-        visible: false,
-        genderPreffer: ""
+        visible: false
     }
 
     onModal = () => {
@@ -26,13 +25,13 @@ export class ModalUI extends Component {
         event.preventDefault();
         this.setState({ visible: false });
         this.props.form.validateFields((err, values) => {
-        
+        console.log(values);
         if (!err) {
             this.props.mutate({
             variables: {
                 twitterUsername: values.twitterUsername,
                 type: values.type,
-                genderPreffer: values.genderPreffer
+                gender: values.genderPreffered
             }
         })
         .then(res => {
@@ -59,15 +58,7 @@ export class ModalUI extends Component {
     // }
 
 
-    handleSelectChangeGender = (e) => {
-        let gender=null;
-        if(e==="woman"){ gender=false}
-        if(e==="man"){ gender=true}
-        this.setState({genderPreffer: e, gender})
-    }
-
     render() {
-    const { genderPreffer } = this.state;
     
     const {
         form: {
@@ -92,51 +83,48 @@ export class ModalUI extends Component {
                     onSubmit={ this.handleSubmit}
                 >
                     <Form.Item>
-                            {getFieldDecorator('title', {
+                            {getFieldDecorator('twitterUsername', {
 								rules: [{ required: true, message: 'Lütfen ilan başlığını giriniz!' }],
 							})(
 								<Input prefix={<Icon type="edit" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Twitter Kullanıcı Adı" />
 							)}
                     </Form.Item>
                     <Query query={GET_TYPES}>
-                        {({ data, loading }) => 
-                        console.log(data)
-                        // (
-                            
-                        //     (!loading && data.types) ?
-                        //         (
-                        //             <Form.Item hasFeedback>
-                        //                 {getFieldDecorator('type', {
-                        //                         rules: [{ required: true, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
-                        //                     })(        
-                        //                         <Select
-                        //                         placeholder="İhtiyaç"
-                        //                         >
-                        //                         {
-                        //                             data.types.map(
-                        //                                 type =>
-                        //                                     <Option key={type.id} value={type.id}>
-                        //                                         {type.description}
-                        //                                     </Option>
-                        //                             )
-                        //                         }
-                        //                         </Select>
-                        //                 )}
-                        //             </Form.Item>
-                        //         ) : null
-                        // )
-                    }
+                        {({ data, loading }) => (
+                            (!loading && data.types) ?
+                                (
+                                    <Form.Item hasFeedback>
+                                        {getFieldDecorator('type', {
+                                                rules: [{ required: true, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
+                                            })(        
+                                                <Select
+                                                placeholder="İhtiyaç"
+                                                >
+                                                {
+                                                    data.types.map(
+                                                        type =>
+                                                            <Option key={type.id} value={type.id}>
+                                                                {type.description}
+                                                            </Option>
+                                                    )
+                                                }
+                                                </Select>
+                                        )}
+                                    </Form.Item>
+                                ) : null
+                        )}
                     </Query>
                     <Form.Item>
+                    {getFieldDecorator('genderPreffered', {
+                            rules: [{ required: false, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
+                        })(
                         <Select
-                            value={ genderPreffer ? genderPreffer: undefined }
-                            placeholder="Cinsiyet"
-                            onChange={this.handleSelectChangeGender}
+                            placeholder="Cinsiyet Tercihi"
                         >
-                        <Option value="man">erkek</Option>
-                        <Option value="woman">kadın</Option>
+                        <Option value={1}>erkek</Option>
+                        <Option value={0}>kadın</Option>
                         </Select>
-                        
+                        )}
                     </Form.Item>
                     <Button 
                         type="primary" 

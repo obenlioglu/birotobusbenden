@@ -1,0 +1,14 @@
+# import TypeOrderByInput from '../../generated/prisma.graphql'
+
+type Query{
+    types(query: String, first: Int, skip: Int, after: String, orderBy: TypeOrderByInput): [Type!]!
+}
+
+type Type {
+  id: ID! 
+  description: String!
+  isActive: Boolean!
+  createdAt: String!
+  updatedAt: String!
+  post: [Post!]!
+}
