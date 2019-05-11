@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Layout, Menu } from 'antd';
-import ModalUI from './ModalUI';
+import {WrappedModalUI} from './ModalUI';
 import Home  from './pages/Home';
 
 const {
@@ -23,7 +23,7 @@ class App extends Component {
       </Header>
       <Content style={{ padding: '0 50px' }}>
           <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-          <ModalUI />
+          <WrappedModalUI />
           <Home />
         </div>
       </Content>
