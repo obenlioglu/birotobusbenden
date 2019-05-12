@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <Layout className="layout">
       <Header>
-        <div className="logo" />
+        <div className="logo__title">#birotobusbenden</div>
         <Menu
           theme="dark"
           mode="horizontal"

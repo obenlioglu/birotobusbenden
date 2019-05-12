@@ -9,7 +9,14 @@
   float: left;
 }
 
-
+.logo__title {
+  font-family: 'Lobster', cursive;
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-align: left;
+  color: white;
+  font-size: 23px
+}
 
 .logo {
   width: 120px;
