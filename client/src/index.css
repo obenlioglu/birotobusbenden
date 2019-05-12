@@ -14,7 +14,23 @@
 .logo {
   width: 120px;
   height: 31px;
-  background: rgba(255,255,255,.2);
   margin: 16px 24px 16px 0;
   float: left;
+  background-image: url("http://www.gencgrafiker.com/wp-content/uploads/2013/05/vektorel-istanbul-silueti-ozel-650x400.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.demo-infinite-container {
+  border: 1px solid #e8e8e8;
+  border-radius: 4px;
+  overflow: auto;
+  padding: 8px 24px;
+  height: 700px;
+}
+.demo-loading-container {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  text-align: center;
 }

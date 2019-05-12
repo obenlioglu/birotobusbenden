@@ -22,9 +22,11 @@ export const CREATE_POST = gql`
 `
 
 export const GET_POSTS = gql`
-    query {
+    query($first: Int!) {
         posts(
-            orderBy: createdAt_DESC
+            orderBy: createdAt_DESC,
+            first: $first,
+            skip: 0
         ) {
             id
             user{twitterUsername}
