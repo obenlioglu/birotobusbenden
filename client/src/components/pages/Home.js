@@ -35,9 +35,17 @@ class Home extends Component {
                                         }
                                         description={post.type.description}
                                         />
-                                        <div style={{ marginRight: 5 }}>{post.genderPreffer ? "Erkek" : "Kadın"}</div>
+                                        <div style={{ marginRight: 5 }}>{post.genderPreffer ? "Erkek" : post.genderPreffer===false ? "Kadın" : null}</div>
                                         <div>
-                                            <Icon type={post.genderPreffer ? "man" : "woman"} />
+                                            {
+                                                post.genderPreffer ?
+                                                <Icon type="man" />
+                                                :
+                                                post.genderPreffer===false ?
+                                                <Icon type="woman" />
+                                                :
+                                                null
+                                            }
                                         </div>
                                     </List.Item>
                                     )}

@@ -57,6 +57,15 @@ export class ModalUI extends Component {
     //     })
     // }
 
+    renderItem() {
+        if(
+            this.props.form.getFieldValue('type')==="cjvil91tz001208570qvvpiy5" || 
+            this.props.form.getFieldValue('type')==="cjvim4xz5001e08575mbb3f7s") 
+        {
+            return true;
+        }
+        return false;
+    }
 
     render() {
     
@@ -114,18 +123,23 @@ export class ModalUI extends Component {
                                 ) : null
                         )}
                     </Query>
-                    <Form.Item>
-                    {getFieldDecorator('genderPreffered', {
-                            rules: [{ required: false, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
-                        })(
-                        <Select
-                            placeholder="Cinsiyet Tercihi"
-                        >
-                        <Option value={1}>erkek</Option>
-                        <Option value={0}>kadın</Option>
-                        </Select>
-                        )}
-                    </Form.Item>
+                    {
+                        this.renderItem() ?
+                        <Form.Item>
+                            {getFieldDecorator('genderPreffered', {
+                                rules: [{ required: false, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
+                            })(
+                            <Select
+                                placeholder="Cinsiyet Tercihi"
+                            >
+                            <Option value={1}>erkek</Option>
+                            <Option value={0}>kadın</Option>
+                            </Select>
+                            )}
+                        </Form.Item>
+                        :
+                        null
+                    }
                     <Button 
                         type="primary" 
                         htmlType="submit" 
