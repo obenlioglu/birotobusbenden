@@ -5,9 +5,8 @@ import {
     List,
     Avatar,
     Spin,
-    Icon
+    Icon,
 } from 'antd';
-import { Button } from 'antd/lib/radio';
 import InfiniteScroll from 'react-infinite-scroller';
 import Moment from 'react-moment';
 
