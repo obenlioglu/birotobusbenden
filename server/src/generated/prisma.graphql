@@ -1,5 +1,5 @@
 # source: http://localhost:4466/birotobusbenden/dev
-# timestamp: Tue May 14 2019 02:11:17 GMT+0300 (GMT+03:00)
+# timestamp: Tue May 14 2019 21:13:35 GMT+0300 (GMT+03:00)
 
 type AggregatePost {
   count: Int!
@@ -19,6 +19,9 @@ type BatchPayload {
 }
 
 scalar DateTime
+
+"""Raw JSON value"""
+scalar Json
 
 """
 The `Long` scalar type represents non-fractional signed whole numeric values.
@@ -45,6 +48,7 @@ type Mutation {
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyTypes(where: TypeWhereInput): BatchPayload!
+  executeRaw(database: PrismaDatabase, query: String!): Json!
 }
 
 enum MutationType {
@@ -78,7 +82,7 @@ type Post implements Node {
   id: ID!
   user: User!
   type: Type!
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -96,7 +100,7 @@ type PostConnection {
 
 input PostCreateInput {
   id: ID
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
   user: UserCreateOneWithoutPostsInput!
   type: TypeCreateOneWithoutPostInput!
@@ -114,14 +118,14 @@ input PostCreateManyWithoutUserInput {
 
 input PostCreateWithoutTypeInput {
   id: ID
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
   user: UserCreateOneWithoutPostsInput!
 }
 
 input PostCreateWithoutUserInput {
   id: ID
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
   type: TypeCreateOneWithoutPostInput!
 }
@@ -150,7 +154,7 @@ enum PostOrderByInput {
 
 type PostPreviousValues {
   id: ID!
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -205,10 +209,28 @@ input PostScalarWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  genderPreffer: Boolean
+  genderPreffer: Int
 
   """All values that are not equal to given value."""
-  genderPreffer_not: Boolean
+  genderPreffer_not: Int
+
+  """All values that are contained in given list."""
+  genderPreffer_in: [Int!]
+
+  """All values that are not contained in given list."""
+  genderPreffer_not_in: [Int!]
+
+  """All values less than the given value."""
+  genderPreffer_lt: Int
+
+  """All values less than or equal the given value."""
+  genderPreffer_lte: Int
+
+  """All values greater than the given value."""
+  genderPreffer_gt: Int
+
+  """All values greater than or equal the given value."""
+  genderPreffer_gte: Int
   isActive: Boolean
 
   """All values that are not equal to given value."""
@@ -299,19 +321,19 @@ input PostSubscriptionWhereInput {
 }
 
 input PostUpdateInput {
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
   user: UserUpdateOneRequiredWithoutPostsInput
   type: TypeUpdateOneRequiredWithoutPostInput
 }
 
 input PostUpdateManyDataInput {
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
 }
 
 input PostUpdateManyMutationInput {
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
 }
 
@@ -345,13 +367,13 @@ input PostUpdateManyWithWhereNestedInput {
 }
 
 input PostUpdateWithoutTypeDataInput {
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
   user: UserUpdateOneRequiredWithoutPostsInput
 }
 
 input PostUpdateWithoutUserDataInput {
-  genderPreffer: Boolean
+  genderPreffer: Int
   isActive: Boolean
   type: TypeUpdateOneRequiredWithoutPostInput
 }
@@ -427,10 +449,28 @@ input PostWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  genderPreffer: Boolean
+  genderPreffer: Int
 
   """All values that are not equal to given value."""
-  genderPreffer_not: Boolean
+  genderPreffer_not: Int
+
+  """All values that are contained in given list."""
+  genderPreffer_in: [Int!]
+
+  """All values that are not contained in given list."""
+  genderPreffer_not_in: [Int!]
+
+  """All values less than the given value."""
+  genderPreffer_lt: Int
+
+  """All values less than or equal the given value."""
+  genderPreffer_lte: Int
+
+  """All values greater than the given value."""
+  genderPreffer_gt: Int
+
+  """All values greater than or equal the given value."""
+  genderPreffer_gte: Int
   isActive: Boolean
 
   """All values that are not equal to given value."""
@@ -485,6 +525,10 @@ input PostWhereInput {
 
 input PostWhereUniqueInput {
   id: ID
+}
+
+enum PrismaDatabase {
+  default
 }
 
 type Query {

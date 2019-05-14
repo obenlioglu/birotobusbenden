@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  graphql, Query } from 'react-apollo';
-import { CREATE_POST, GET_POSTS, GET_TYPES } from '../queries';
+import { CREATE_POST, GET_TYPES } from '../queries';
 import { 
     Button, 
     Modal, 
@@ -134,6 +134,7 @@ export class ModalUI extends Component {
                             >
                             <Option value={1}>erkek</Option>
                             <Option value={0}>kadın</Option>
+                            <Option value={2}>farketmez</Option>
                             </Select>
                             )}
                         </Form.Item>

@@ -1,7 +1,7 @@
 const { gql } = require('apollo-boost');
 
 export const CREATE_POST = gql`
-    mutation($twitterUsername: String! $type: ID! $gender: Boolean) {
+    mutation($twitterUsername: String! $type: ID! $gender: Int) {
         createPost(
             data: {
             user: { 
