@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {  graphql, Query } from 'react-apollo';
-import { CREATE_POST, GET_POSTS, GET_TYPES } from '../queries';
+import { CREATE_POST, GET_TYPES } from '../queries';
 import { 
     Button, 
     Modal, 
@@ -59,8 +59,8 @@ export class ModalUI extends Component {
 
     renderItem() {
         if(
-            this.props.form.getFieldValue('type')===process.env.ONLYGUEST || 
-            this.props.form.getFieldValue('type')===process.env.GUESTANDTICKET) 
+            this.props.form.getFieldValue('type')==="cjvnul2b902kv0723sqz4v4ez" || 
+            this.props.form.getFieldValue('type')==="cjvnul7bu02l30723uguxb782") 
         {
             return true;
         }
