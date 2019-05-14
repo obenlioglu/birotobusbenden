@@ -7,7 +7,8 @@ import {
     Form, 
     Input, 
     Select,
-    Icon
+    Icon,
+    Divider
 } from 'antd';
 
 const { Option } = Select;
@@ -77,6 +78,11 @@ export class ModalUI extends Component {
 
     return (
       <div style={{ marginTop: 10, marginBottom: 20 }}>
+        <Divider>Bir otobüs de sizden olsun</Divider>
+        <p>
+        23 Haziran İstanbul yerel seçimlerinde şehir dışında bulunan öğrencilere bilet ve konaklama imkanı sağlamak için
+        ilan bırakman yeterli
+        </p>
         <Button type="primary" icon="plus" onClick={this.onModal}>
             İlan Ver
         </Button>
