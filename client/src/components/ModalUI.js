@@ -107,7 +107,7 @@ export class ModalUI extends Component {
                                                 rules: [{ required: true, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
                                             })(        
                                                 <Select
-                                                placeholder="İhtiyaç"
+                                                placeholder="karşıyalabilirim.."
                                                 >
                                                 {
                                                     data.types.map(
@@ -127,7 +127,7 @@ export class ModalUI extends Component {
                         this.renderItem() ?
                         <Form.Item>
                             {getFieldDecorator('genderPreffered', {
-                                rules: [{ required: false, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
+                                rules: [{ required: false, message: 'Lütfen Cinsiyet tercihinizi seçiniz!' }],
                             })(
                             <Select
                                 placeholder="Cinsiyet Tercihi"
