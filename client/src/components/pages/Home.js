@@ -76,13 +76,13 @@ class Home extends Component {
                                         description={post.type.description}
                                         />
                                         
-                                        <div style={{ marginRight: 5 }}>{post.genderPreffer ? "Erkek" : post.genderPreffer===false ? "Kadın" : null}</div>
+                                        <div style={{ marginRight: 5 }}>{post.genderPreffer===1 ? "Erkek" : post.genderPreffer===0 ? "Kadın" : post.genderPreffer===2 ? "Farketmez" : null}</div>
                                         <div style={{ marginRight: 75 }}>
                                             {
-                                                post.genderPreffer ?
+                                                post.genderPreffer===1 ?
                                                 <Icon type="man" />
                                                 :
-                                                post.genderPreffer===false ?
+                                                post.genderPreffer===0 ?
                                                 <Icon type="woman" />
                                                 :
                                                 null

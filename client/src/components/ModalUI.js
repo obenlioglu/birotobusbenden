@@ -107,7 +107,7 @@ export class ModalUI extends Component {
                                                 rules: [{ required: true, message: 'Lütfen İhtiyaç Tipini seçiniz!' }],
                                             })(        
                                                 <Select
-                                                placeholder="İhtiyaç"
+                                                placeholder="karşılayabilirim..."
                                                 >
                                                 {
                                                     data.types.map(
@@ -134,6 +134,7 @@ export class ModalUI extends Component {
                             >
                             <Option value={1}>erkek</Option>
                             <Option value={0}>kadın</Option>
+                            <Option value={2}>farketmez</Option>
                             </Select>
                             )}
                         </Form.Item>
