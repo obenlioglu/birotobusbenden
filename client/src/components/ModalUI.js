@@ -59,8 +59,8 @@ export class ModalUI extends Component {
 
     renderItem() {
         if(
-            this.props.form.getFieldValue('type')===process.env.ONLYGUEST || 
-            this.props.form.getFieldValue('type')===process.env.GUESTANDTICKET) 
+            this.props.form.getFieldValue('type')==="cjvnufk9h007v0714rznpx450" || 
+            this.props.form.getFieldValue('type')==="cjvnufppd00800714qmha77b3") 
         {
             return true;
         }
