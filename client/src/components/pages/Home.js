@@ -9,6 +9,7 @@ import {
 } from 'antd';
 import { Button } from 'antd/lib/radio';
 import InfiniteScroll from 'react-infinite-scroller';
+import Moment from 'react-moment';
 
 
 class Home extends Component {
@@ -49,6 +50,7 @@ class Home extends Component {
                         ({ data, loading, error }) => {
                             if(loading) { return(<Spin size="large" />) } 
                             if(error) { return(<div>Hata</div>) }
+                            console.log(data);
                             return(
                                 <InfiniteScroll
                                     initialLoad={false}
@@ -73,8 +75,9 @@ class Home extends Component {
                                         }
                                         description={post.type.description}
                                         />
+                                        
                                         <div style={{ marginRight: 5 }}>{post.genderPreffer ? "Erkek" : post.genderPreffer===false ? "Kadın" : null}</div>
-                                        <div>
+                                        <div style={{ marginRight: 75 }}>
                                             {
                                                 post.genderPreffer ?
                                                 <Icon type="man" />
@@ -84,6 +87,12 @@ class Home extends Component {
                                                 :
                                                 null
                                             }
+                                        </div>
+                                        <div style={{ marginRight: 5 }}>
+                                        <Moment format="YYYY/MM/DD HH:mm">
+                                        {post.createdAt}
+                                        </Moment>
+                                        
                                         </div>
                                     </List.Item>
                                     )}

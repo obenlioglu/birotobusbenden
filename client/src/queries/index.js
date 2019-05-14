@@ -31,6 +31,7 @@ export const GET_POSTS = gql`
             id
             user{twitterUsername}
             genderPreffer
+            createdAt
             type{description}
         }
     }

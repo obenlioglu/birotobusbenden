@@ -146,6 +146,7 @@ export class ModalUI extends Component {
                         className="login-form-button" 
                         block
                     >
+                    Gönder
                     </Button>
                 </Form>
             

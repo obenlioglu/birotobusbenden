@@ -28,7 +28,7 @@ class App extends Component {
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>
-        Ant Design ©2018 Created by Ant UED
+        created by <a href="https://twitter.com/osmanbenlioglu">@osmanbenlioglu </a> <a href="https://twitter.com/dincercanpunar">@dincercanpunar </a>
       </Footer>
     </Layout>
     );

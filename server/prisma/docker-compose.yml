@@ -1,7 +1,7 @@
 version: '3'
 services:
   prisma:
-    image: prismagraphql/birotobusbenden
+    image: prismagraphql/prisma:1.32
     restart: always
     ports:
     - "4466:4466"
@@ -13,11 +13,12 @@ services:
         databases:
           default:
             connector: postgres
-            host: ec2-54-195-252-243.eu-west-1.compute.amazonaws.com
-            port: '5432'
-            database: detbc37rg8eg4t
+            host: ec2-54-246-121-32.eu-west-1.compute.amazonaws.com
+            database: d7a424sg595ort
+            schema: public
+            user: zpreugyinhivwb
+            password: 819fbbe3e181abe871890fee2191685ba0aea03878f2e9c5d4098ef3ad8ef8f0
             ssl: true
-            schema: schema.graphql
-            user: xdclwlwfoniihz
-            password: 2d1db2f6120319ee1d4a2f6dc8954b679348a8a6c760e3c59a13141305c1a05f
+            rawAccess: true
+            port: '5432'
             migrations: true

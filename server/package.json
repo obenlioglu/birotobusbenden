@@ -15,6 +15,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "node src/app.js",
     "start:dev": "env-cmd ./config/dev.env nodemon src/app.js",
     "get-schema": "graphql get-schema -p prisma --dotenv config/dev.env"
   },

@@ -1,5 +1,5 @@
 # source: http://localhost:4466/birotobusbenden/dev
-# timestamp: Fri May 10 2019 01:16:23 GMT+0300 (GMT+03:00)
+# timestamp: Tue May 14 2019 02:11:17 GMT+0300 (GMT+03:00)
 
 type AggregatePost {
   count: Int!
@@ -39,9 +39,9 @@ type Mutation {
   upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
   upsertPost(where: PostWhereUniqueInput!, create: PostCreateInput!, update: PostUpdateInput!): Post!
   upsertType(where: TypeWhereUniqueInput!, create: TypeCreateInput!, update: TypeUpdateInput!): Type!
-  updateManyUsers(data: UserUpdateInput!, where: UserWhereInput): BatchPayload!
-  updateManyPosts(data: PostUpdateInput!, where: PostWhereInput): BatchPayload!
-  updateManyTypes(data: TypeUpdateInput!, where: TypeWhereInput): BatchPayload!
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  updateManyPosts(data: PostUpdateManyMutationInput!, where: PostWhereInput): BatchPayload!
+  updateManyTypes(data: TypeUpdateManyMutationInput!, where: TypeWhereInput): BatchPayload!
   deleteManyUsers(where: UserWhereInput): BatchPayload!
   deleteManyPosts(where: PostWhereInput): BatchPayload!
   deleteManyTypes(where: TypeWhereInput): BatchPayload!
@@ -76,8 +76,8 @@ type PageInfo {
 
 type Post implements Node {
   id: ID!
-  user(where: UserWhereInput): User!
-  type(where: TypeWhereInput): Type!
+  user: User!
+  type: Type!
   genderPreffer: Boolean
   isActive: Boolean!
   createdAt: DateTime!
@@ -95,6 +95,7 @@ type PostConnection {
 }
 
 input PostCreateInput {
+  id: ID
   genderPreffer: Boolean
   isActive: Boolean
   user: UserCreateOneWithoutPostsInput!
@@ -112,12 +113,14 @@ input PostCreateManyWithoutUserInput {
 }
 
 input PostCreateWithoutTypeInput {
+  id: ID
   genderPreffer: Boolean
   isActive: Boolean
   user: UserCreateOneWithoutPostsInput!
 }
 
 input PostCreateWithoutUserInput {
+  id: ID
   genderPreffer: Boolean
   isActive: Boolean
   type: TypeCreateOneWithoutPostInput!
@@ -151,6 +154,109 @@ type PostPreviousValues {
   isActive: Boolean!
   createdAt: DateTime!
   updatedAt: DateTime!
+}
+
+input PostScalarWhereInput {
+  """Logical AND on all given filters."""
+  AND: [PostScalarWhereInput!]
+
+  """Logical OR on all given filters."""
+  OR: [PostScalarWhereInput!]
+
+  """Logical NOT on all given filters combined by AND."""
+  NOT: [PostScalarWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  genderPreffer: Boolean
+
+  """All values that are not equal to given value."""
+  genderPreffer_not: Boolean
+  isActive: Boolean
+
+  """All values that are not equal to given value."""
+  isActive_not: Boolean
+  createdAt: DateTime
+
+  """All values that are not equal to given value."""
+  createdAt_not: DateTime
+
+  """All values that are contained in given list."""
+  createdAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  createdAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  createdAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  createdAt_lte: DateTime
+
+  """All values greater than the given value."""
+  createdAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+
+  """All values that are not equal to given value."""
+  updatedAt_not: DateTime
+
+  """All values that are contained in given list."""
+  updatedAt_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  updatedAt_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  updatedAt_lt: DateTime
+
+  """All values less than or equal the given value."""
+  updatedAt_lte: DateTime
+
+  """All values greater than the given value."""
+  updatedAt_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  updatedAt_gte: DateTime
 }
 
 type PostSubscriptionPayload {
@@ -195,38 +301,59 @@ input PostSubscriptionWhereInput {
 input PostUpdateInput {
   genderPreffer: Boolean
   isActive: Boolean
-  user: UserUpdateOneWithoutPostsInput
-  type: TypeUpdateOneWithoutPostInput
+  user: UserUpdateOneRequiredWithoutPostsInput
+  type: TypeUpdateOneRequiredWithoutPostInput
+}
+
+input PostUpdateManyDataInput {
+  genderPreffer: Boolean
+  isActive: Boolean
+}
+
+input PostUpdateManyMutationInput {
+  genderPreffer: Boolean
+  isActive: Boolean
 }
 
 input PostUpdateManyWithoutTypeInput {
   create: [PostCreateWithoutTypeInput!]
   connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
   disconnect: [PostWhereUniqueInput!]
   delete: [PostWhereUniqueInput!]
   update: [PostUpdateWithWhereUniqueWithoutTypeInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  deleteMany: [PostScalarWhereInput!]
   upsert: [PostUpsertWithWhereUniqueWithoutTypeInput!]
 }
 
 input PostUpdateManyWithoutUserInput {
   create: [PostCreateWithoutUserInput!]
   connect: [PostWhereUniqueInput!]
+  set: [PostWhereUniqueInput!]
   disconnect: [PostWhereUniqueInput!]
   delete: [PostWhereUniqueInput!]
   update: [PostUpdateWithWhereUniqueWithoutUserInput!]
+  updateMany: [PostUpdateManyWithWhereNestedInput!]
+  deleteMany: [PostScalarWhereInput!]
   upsert: [PostUpsertWithWhereUniqueWithoutUserInput!]
+}
+
+input PostUpdateManyWithWhereNestedInput {
+  where: PostScalarWhereInput!
+  data: PostUpdateManyDataInput!
 }
 
 input PostUpdateWithoutTypeDataInput {
   genderPreffer: Boolean
   isActive: Boolean
-  user: UserUpdateOneWithoutPostsInput
+  user: UserUpdateOneRequiredWithoutPostsInput
 }
 
 input PostUpdateWithoutUserDataInput {
   genderPreffer: Boolean
   isActive: Boolean
-  type: TypeUpdateOneWithoutPostInput
+  type: TypeUpdateOneRequiredWithoutPostInput
 }
 
 input PostUpdateWithWhereUniqueWithoutTypeInput {
@@ -404,6 +531,7 @@ type TypeConnection {
 }
 
 input TypeCreateInput {
+  id: ID
   description: String!
   isActive: Boolean
   post: PostCreateManyWithoutTypeInput
@@ -415,6 +543,7 @@ input TypeCreateOneWithoutPostInput {
 }
 
 input TypeCreateWithoutPostInput {
+  id: ID
   description: String!
   isActive: Boolean
 }
@@ -494,10 +623,14 @@ input TypeUpdateInput {
   post: PostUpdateManyWithoutTypeInput
 }
 
-input TypeUpdateOneWithoutPostInput {
+input TypeUpdateManyMutationInput {
+  description: String
+  isActive: Boolean
+}
+
+input TypeUpdateOneRequiredWithoutPostInput {
   create: TypeCreateWithoutPostInput
   connect: TypeWhereUniqueInput
-  delete: Boolean
   update: TypeUpdateWithoutPostDataInput
   upsert: TypeUpsertWithoutPostInput
 }
@@ -678,6 +811,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
   twitterUsername: String!
   isActive: Boolean
   posts: PostCreateManyWithoutUserInput
@@ -689,6 +823,7 @@ input UserCreateOneWithoutPostsInput {
 }
 
 input UserCreateWithoutPostsInput {
+  id: ID
   twitterUsername: String!
   isActive: Boolean
 }
@@ -768,10 +903,14 @@ input UserUpdateInput {
   posts: PostUpdateManyWithoutUserInput
 }
 
-input UserUpdateOneWithoutPostsInput {
+input UserUpdateManyMutationInput {
+  twitterUsername: String
+  isActive: Boolean
+}
+
+input UserUpdateOneRequiredWithoutPostsInput {
   create: UserCreateWithoutPostsInput
   connect: UserWhereUniqueInput
-  delete: Boolean
   update: UserUpdateWithoutPostsDataInput
   upsert: UserUpsertWithoutPostsInput
 }

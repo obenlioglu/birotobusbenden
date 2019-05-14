@@ -11,8 +11,8 @@ type Post {
   type: Type!
   genderPreffer: Boolean
   isActive: Boolean! @default(value: true)
-  createdAt: String!
-  updatedAt: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
 }
 
 type Mutation {
