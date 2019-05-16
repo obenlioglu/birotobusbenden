@@ -9,7 +9,7 @@ import { ApolloProvider } from 'react-apollo';
 const client = new ApolloClient({
     uri: process.env.REACT_APP_HTTP_URI,
     request: async operation => {
-        const token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NTc4Mzk3MzAsIm5iZiI6MTU1NzgzOTczMCwiZXhwIjoxNTU3OTI2MTMwfQ.yrqbabc6cmN4cF6ZIxAva6hHUMh8B9wzKO10q6LW3ZM"
+        const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InNlcnZpY2UiOiJiaXJvdG9idXNiZW5kZW4tYXBwQHByb2QiLCJyb2xlcyI6WyJhZG1pbiJdfSwiaWF0IjoxNTU4MDA2MTEyLCJleHAiOjE1NTg2MTA5MTJ9.RDvF4X3fw4Tdgh3k5xNHeIgi0g7YJKXmKSExCwmsQBE"
         operation.setContext({
           headers: {
             authorization: token ? `Bearer ${token}` : ''
